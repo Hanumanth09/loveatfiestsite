@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Special</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&display=swap');
+        
+        body {
+            background: url('https://c4.wallpaperflare.com/wallpaper/529/1008/1/i-want-to-say-that-i-m-happy-that-i-have-you-happy-valentine-s-day-love-day-loving-couple-under-a-loving-tree-1920%C3%971080-wallpaper-preview.jpg') no-repeat center center/cover;
+            animation: backgroundChange 10s infinite alternate;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            overflow: hidden;
+            height: 100vh;
+        }
+        @keyframes backgroundChange {
+            0% { background: url('https://static.vecteezy.com/system/resources/previews/000/586/186/large_2x/two-enamored-under-a-love-tree-vector.jpg') no-repeat center center/cover; }
+            50% { background: url('https://img.freepik.com/premium-vector/love-happy-valentine-s-day-banners-paper-art-style-vector-premium_82984-802.jpg') no-repeat center center/cover; }
+            100% { background: url('https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-pink-cartoon-520-romantic-confession-season-background-image_226613.jpg') no-repeat center center/cover; }
+        }
+        .header {
+            background-color: rgba(255, 77, 109, 0.8);
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            padding: 15px;
+            font-family: 'Great Vibes', cursive;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .quote {
+            font-size: 26px;
+            font-style: italic;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+            min-height: 50px;
+            position: relative;
+            animation: fadeInOut 5s infinite, slideIn 5s infinite alternate;
+            font-family: 'Dancing Script', cursive;
+        }
+        .footer {
+            background-color: rgba(255, 77, 109, 0.8);
+            color: white;
+            font-size: 24px;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-family: 'Great Vibes', cursive;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+        @keyframes slideIn {
+            0% { transform: translateX(-20px); }
+            100% { transform: translateX(20px); }
+        }
+        @keyframes floatHeart {
+            0% { transform: translateY(100vh) scale(1); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 28px;
+            animation: floatHeart 5s linear infinite;
+        }
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Happy Valentine's Day, My Love! 💕</div>
+    <div class="quote" id="quote">💕 'You are my today and all of my tomorrows 💕</div>
+    <div class="footer">💘 💘</div>
+
+    <!-- Background Music -->
+    <audio id="background-music" autoplay loop>
+        <source src="your-song.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Play/Pause Music Button -->
+    <button class="music-btn" onclick="toggleMusic()">🎵 Play/Pause Music</button>
+
+    <script>
+        const quotes = [
+            "💕 'You are my today and all of my tomorrows 💕",
+            "💖 'Every love story is beautiful, but ours is my favorite.' 💖",
+            "💞 'I have found the one whom my soul loves. 💞",
+            "❤️ 'In your arms, I've found my forever home.' ❤️",
+            "😍 'You make my world brighter with just your smile.' 😍",
+            "🌹 'Love is not about how many days, months, or years you have been together. It’s about how much you love each other every day.' 🌹",
+            "💓 'I still fall for you every day.' 💓"
+        ];
+        let index = 0;
+        
+        function changeQuote() {
+            const quoteElement = document.getElementById("quote");
+            quoteElement.style.animation = "none";
+            setTimeout(() => {
+                quoteElement.textContent = quotes[index];
+                quoteElement.style.animation = "fadeInOut 5s infinite, slideIn 5s infinite alternate";
+            }, 100);
+            index = (index + 1) % quotes.length;
+        }
+        setInterval(changeQuote, 5000);
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 500);
+
+        // Play/Pause Music Function
+        const music = document.getElementById("background-music");
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+    </script>
+</body>
+</html>
